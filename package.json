@@ -1,0 +1,29 @@
+{
+  "name": "news-scappers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/htira2001/news-scappers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/htira2001/news-scappers/issues"
+  },
+  "homepage": "https://github.com/htira2001/news-scappers#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "mongoose": "^5.4.20",
+    "morgan": "^1.9.1",
+    "request": "^2.88.0"
+  }
+}
