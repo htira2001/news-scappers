@@ -1,0 +1,60 @@
+body {
+    background-image: url("../images/new\ york\ time.jpg");
+}
+
+#navBar {
+    background-color: white;
+    margin-bottom: 5px;
+}
+
+#bodyinput {
+    width: 50%;
+}
+
+.jumbotron {
+    overflow: hidden;
+    background-size: 70%;
+    background-position: center;
+    background-image: url("../images/cappucino.jpg");
+    padding-top: 5px;
+    background-repeat: no-repeat;
+    height: 400px;
+    width: 100%;
+}
+
+.pictureText {
+    font-weight: 500;
+    font-size: 35px;
+    font-family: 'Cinzel', serif;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.panel-heading.row {
+    width: 100%;
+    margin-left: 0%;
+}
+
+.panel-primary {
+    height: 135px;
+}
+
+#savenote {
+    display: block;
+}
+
+.navbar-brand,
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.panel-body {
+    padding-right: 12px;
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 640px) {}
