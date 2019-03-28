@@ -53,98 +53,97 @@
                 <div class='row'>
                     <div class='col-md-12'>
                         <div class='panel-body'>
-                            <p>{{this.link</p>
+                            <p>{{this.link}}</p>
                         </div>
                     </div>
                 </div>
             </div>
             {{/each}}
-                        </div>
-                    </div>
-                </div>
-                <!--modal-->
-                <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
-                    <div class='modal-dialog' role='document'>
-                        <dic class='modal-content'>
-                            <div class='modal-header'>
-                                <button type='button' class='close' data-dismiss='modal' aria-label='close'><span
-                                        aria-hidden='true'>&times;</span></button>
-                                <h4 class='modal-title' id='myModalLabel'> Notes For Articles<span
-                                        id='articleID'></span></h4>
-                            </div>
-                            <div class='modal-body'>
-                                <div id='notes'></div>
-                            </div>
-                        </dic>
-                    </div>
-                </div>
-                <script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
+        </div>
+    </div>
+</div>
+<!--modal-->
+<div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
+    <div class='modal-dialog' role='document'>
+        <dic class='modal-content'>
+            <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal' aria-label='close'><span
+                        aria-hidden='true'>&times;</span></button>
+                <h4 class='modal-title' id='myModalLabel'> Notes For Articles<span id='articleID'></span></h4>
+            </div>
+            <div class='modal-body'>
+                <div id='notes'></div>
+            </div>
+        </dic>
+    </div>
+</div>
+<script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
 
-                <script>
-                    $(document).on('click', '#modalbutton', function () {
-                        // Empty the notes from the note section
-                        $('#notes').empty();
-                        // Save the id from the button tag
-                        let thisId = $(this).attr('data-id');
-                        $('#articleID').text(thisId);
-                        //ajax call for the Article
-                        $.ajax({
-                            method: 'GET',
-                            url: '/articles/' + thisId
-                        })
-                            // With that done, add the note information to the page
-                            .done(function (data) {
-                                console.log(data);
-                                // Placeholder for notes
-                                $('#notes').append('<p id="actualnotes"></p>');
-                                if (data.notes) {
-                                    $('#actualnotes').append('<ul id="notelist">'');
+<script>
+    $(document).on('click', '#modalbutton', function () {
+        // Empty the notes from the note section
+        $('#notes').empty();
+        // Save the id from the button tag
+        let thisId = $(this).attr('data-id');
+        $('#articleID').text(thisId);
+        //ajax call for the Article
+        $.ajax({
+            method: 'GET',
+            url: '/articles/' + thisId
+        })
+            // With that done, add the note information to the page
+            .done(function (data) {
+                console.log(data);
+                // Placeholder for notes
+                $('#notes').append('<p id="actualnotes"></p>');
+                if (data.notes) {
+                    $('#actualnotes').append('<ul id="notelist">'');
                                     for (let i = 0; i < data.notes.length; i++) {
-                                        $('#notelist').append("<li id='" + data.notes[i]._id + "'>" + data.notes[i].body + " " +
-                                            "<button data-id='" + data.notes[i]._id +
-                                            "' id='deletenote'>X</button></li>");
-                                    }
-                                    $('#actualnotes').append('</ul>');
-                                } else {
-                                    $('#actualnotes').text("There aren't any notes yet.");
-                                }
-                                // A textarea to add a new note body
-                                $('#notes').append("<textarea id='bodyinput' name='body'></textarea>");
-                                $('#notes').append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
-                            });
-                    });
-                    $(document).on('click', '#savenote', function () {
-                        // Grab the id associated with the article from the submit button
-                        let thisId = $(this).attr('data-id');
-                        // Run a POST request to change the note, using what's entered in the inputs
-                        $.ajax({
-                            method: 'POST',
-                            url: '/articles/' + thisId,
-                            data: {
-                                body: $('#bodyinput').val()
-                            }
+                        $('#notelist').append("<li id='" + data.notes[i]._id + "'>" + data.notes[i].body + " " +
+                            "<button data-id='" + data.notes[i]._id +
+                            "' id='deletenote'>X</button></li>");
+                    }
+                    $('#actualnotes').append('</ul>');
+                } else {
+                    $('#actualnotes').text("There aren't any notes yet.");
+                }
+                // A textarea to add a new note body
+                $('#notes').append("<textarea id='bodyinput' name='body'></textarea>");
+                $('#notes').append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+            });
+    });
+    $(document).on('click', '#savenote', function () {
+        // Grab the id associated with the article from the submit button
+        let thisId = $(this).attr('data-id');
+        // Run a POST request to change the note, using what's entered in the inputs
+        $.ajax({
+            method: 'POST',
+            url: '/articles/' + thisId,
+            data: {
+                body: $('#bodyinput').val()
+            }
 
-                        })
-                            .done(function (data) {
-                                $('#notelist').empty();
-                                for (let i = 0; i < data.notes.length; i++) {
-                                    $('#notelist').append("<li id='" + data.notes[i]._id + "'>" + data.notes[i].body + " " + "<button data-id='" + data.notes[i]._id + "' id='deletenote'>X</button></li>");
-                                }
-                            });
-                        //remove the values entered in the input and textarea for note entry
-                        $('#bodyinput').val('');
-                    });
-                    // When you click the deletenote button
-                    $(document).on('click', '#deletenote', function () {
-                        // Grab the id associated with the note
-                        let thisId = $(this).attr('data-id');
-                        // Run a POST request to delete the note
-                        $.ajax({
-                            method: 'GET',
-                            url: '/notes/' + thisId,
-                        })
-                            .done(function (data) {
-                                $('#' + data._id).remove();
-                            });
-                    });
-                </script>
+        })
+            .done(function (data) {
+                $('#notelist').empty();
+                for (let i = 0; i < data.notes.length; i++) {
+                    $('#notelist').append("<li id='" + data.notes[i]._id + "'>" + data.notes[i].body + " " + "<button data-id='" + data.notes[i]._id + "' id='deletenote'>X</button></li>");
+                }
+            });
+        //remove the values entered in the input and textarea for note entry
+        $('#bodyinput').val('');
+    });
+    // When you click the deletenote button
+    $(document).on('click', '#deletenote', function () {
+        // Grab the id associated with the note
+        let thisId = $(this).attr('data-id');
+        // Run a POST request to delete the note
+        $.ajax({
+            method: 'GET',
+            url: '/notes/' + thisId,
+        })
+            .done(function (data) {
+                $('#' + data._id).remove();
+            });
+    });
+</script>
