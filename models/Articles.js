@@ -1,4 +1,4 @@
-let mongoose = require("mongoose");
+let mongoose = require('mongoose');
 // Save a reference to the Schema constructor //
 let Schema = mongoose.Schema;
 // Using the Schema constructor, create a new UserSchema object 
@@ -23,13 +23,13 @@ let ArticleSchema = new Schema({
 
     note: [{
         type: Schema.Types.ObjectId,
-        ref: "Note"
+        ref: 'Note'
     }]
 });
 
 // This creates model from the above schema, using mongoose's model method //
 
-let Article = mongoose.model("Article", ArticleSchema);
+let Article = mongoose.model('Article', ArticleSchema);
 
 // Export the Article Model //
 
