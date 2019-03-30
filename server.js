@@ -7,7 +7,7 @@ let request = require('request');
 let cheerio = require('cheerio');
 //Requiring Note and Article models
 let Note = require('./models/Note');
-let Artice = require('./models/Articles');
+let Article = require('./models/Articles');
 //set mongoose
 mongoose.Promise = Promise;
 let app = express();
