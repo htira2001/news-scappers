@@ -1,5 +1,5 @@
 body {
-    background-image: url("../images/newYorkTime.jpg");
+    background-image: url("../images/world-newspapers.jpg");
 }
 
 #navBar {
@@ -15,7 +15,7 @@ body {
     overflow: hidden;
     background-size: 70%;
     background-position: center;
-    background-image: url("../images/cappucino.jpg");
+    background-image: url("../images/yellow.jpg");
     padding-top: 5px;
     background-repeat: no-repeat;
     height: 400px;
