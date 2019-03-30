@@ -8,6 +8,7 @@ let mongoose = require('mongoose');
 mongoose.Promise = Promise;
 let Note = require('../models/Note');
 let Article = require('../models/Articles');
+
 router.get('/', function (req, res) {
     res.render('index');
 });
