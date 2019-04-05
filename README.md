@@ -6,9 +6,9 @@
 ### Express.js
 ### MongoDB
 ### Mongoose
-### npm packages :  
-      - body-parser, 
+### npm packages :   
       - express, 
       - cheerio, 
       - axios,
-      - mongoose
+      - mongoose,
+      - mongojs

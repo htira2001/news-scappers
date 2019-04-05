@@ -1,0 +1,12 @@
+body {
+    background-image: url(../img/News.jpg)
+}
+h1{
+    text-align: center;
+    color: blanchedalmond;
+}
+#articles{
+    background-image: url(../img/news.png.jpg);
+    text-align: center;
+    color: orange;   
+}
